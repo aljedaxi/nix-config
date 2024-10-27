@@ -1,0 +1,25 @@
+From 4269323b21ddbebb59d6e8c700650bd23c90bddf Mon Sep 17 00:00:00 2001
+From: Kathy Acker <aljedaxi@pm.me>
+Date: Sat, 26 Oct 2024 21:29:10 -0600
+Subject: [PATCH] feat: true borderlessness
+
+---
+ config.def.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index 9efa774..ece917d 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,7 +1,7 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* appearance */
+-static const unsigned int borderpx  = 1;        /* border pixel of windows */
++static const unsigned int borderpx  = 0;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
+-- 
+2.44.1
+
