@@ -84,6 +84,7 @@
 		picom
 		neofetch
 		scrot
+		fzf
   ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
