@@ -36,10 +36,7 @@
 		windowManager.dwm = {
 			enable = true;
 			package = pkgs.dwm.override {
-				patches = [
-					./patches/dwm-borderless-1.0.0.diff
-					./patches/dwm-alpha-20230401-348f655.diff
-				];
+				patches = [ ./patches/dwm-borderless-1.0.0.diff ];
 			};
 		};
 		displayManager.sx.enable = true;
@@ -47,7 +44,6 @@
     xkb.variant = "colemak";
   # xkb.options = "eurosign:e,caps:escape";
 	};
-	services.picom.enable = true;
 
   services.pipewire = {
     enable = true;
@@ -72,18 +68,25 @@
   environment.systemPackages = with pkgs; [
 		hsetroot
 		(st.overrideAttrs (oldAttrs: rec {
-			patches = [ ./patches/st-alpha-20220206-0.8.5.diff ];
+			patches = [
+				./patches/st-alpha-20220206-0.8.5.diff
+			];
 		}))
 		git
 		surf
 		firefox
 		dmenu
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     telegram-desktop
 		dunst
 		logseq
-		pulseaudio
+		pulsemixer
+		picom
+		neofetch
+		scrot
   ];
+
+	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
