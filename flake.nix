@@ -3,21 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-		home-manager = {
-			url = "github:nix-community/home-manager/master";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, ... }:
 	let
+		system = "x86_64-linux";
 		inherit (self) outputs;
+		lib = nixpkgs.lib;
+		pkgs = nixpkgs.legacyPackages.${system};
 	in {
 		nixosConfigurations = {
 			fenrir = nixpkgs.lib.nixosSystem {
-				modules = [
-					./configuration.nix
-				];
+				inherit system;
+				modules = [ ./configuration.nix ];
 			};
 		};
 	};

@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			./graphical-conf.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,61 +32,34 @@
   };
 
   # Enable the X11 windowing system.
-	services.xserver = {
-		enable = true;
-		windowManager.dwm = {
-			enable = true;
-			package = pkgs.dwm.override {
-				patches = [ ./patches/dwm-borderless-1.0.0.diff ];
-			};
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+	environment.shells = with pkgs; [ zsh ];
+	users = {
+		users.daxi = {
+			isNormalUser = true;
+			extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
 		};
-		displayManager.sx.enable = true;
-    xkb.layout = "us";
-    xkb.variant = "colemak";
-  # xkb.options = "eurosign:e,caps:escape";
+	};
+	users.defaultUserShell = pkgs.zsh;
+	programs.zsh.enable = true;
+	programs.git = {
+		enable = true;
+		config = {
+			init.defaultBranch = "main";
+			safe.directory = "/etc/nixos";
+			user.name = "aljedaxi";
+			user.email = "aljedaxi@pm.me";
+		};
 	};
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-	environment.shells = with pkgs; [ zsh ];
-	users.defaultUserShell = pkgs.zsh;
-	programs.zsh.enable = true;
-  users.users.daxi = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-	nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ]; # needed for logseq >~<
-  environment.systemPackages = with pkgs; [
-		hsetroot
-		(st.overrideAttrs (oldAttrs: rec {
-			patches = [
-				./patches/st-alpha-20220206-0.8.5.diff
-			];
-		}))
-		git
-		surf
-		firefox
-		dmenu
-    vim
-    telegram-desktop
-		dunst
-		logseq
-		pulsemixer
-		picom
-		neofetch
-		scrot
-		fzf
-  ];
+  environment.systemPackages = with pkgs; [ pulsemixer vim fzf ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
