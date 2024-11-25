@@ -34,5 +34,6 @@
 		telegram-desktop
 		logseq
 		neofetch
+		xclip
   ];
 }

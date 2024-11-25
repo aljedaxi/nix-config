@@ -53,13 +53,19 @@
 		};
 	};
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+	services.emacs = {
+		# package = pkgs.emacs-unstable;
+		startWithGraphical = true;
+		enable = true;
+		defaultEditor = true;
+	};
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
-  environment.systemPackages = with pkgs; [ pulsemixer vim fzf ];
+  environment.systemPackages = with pkgs; [ pulsemixer vim fzf
+		ripgrep #doom emacs
+	];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
