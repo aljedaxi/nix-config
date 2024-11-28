@@ -19,6 +19,8 @@ open $outfile.mp3'';
 			"sd/nix/update"	= { executable = true; text = ''pushd /etc/nixos
 sudo nix flake update && sudo nixos-rebuild switch
 popd''; };
+			"sd/doom/install" = { executable = true; text = "git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs && ~/.config/emacs/bin/doom install"; };
+			"sd/doom/run" = { executable = true; text = "~/.config/emacs/bin/doom run $@"; };
 			".zshrc" = {
 				text = ''
 export EDITOR=vi

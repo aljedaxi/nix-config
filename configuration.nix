@@ -53,17 +53,24 @@
 		};
 	};
 
+	nixpkgs.overlays = [
+		(import (builtins.fetchTarball {
+			url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+			sha256 = "sha256:1dnlckw7jrxw7r6sb9accsnsp7wy488fqs5xa7mxkkj7vaa2263c";
+		}))
+	];
 	services.emacs = {
 		# package = pkgs.emacs-unstable;
+		package = pkgs.emacs-git;
 		startWithGraphical = true;
 		enable = true;
 		defaultEditor = true;
 	};
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-  environment.systemPackages = with pkgs; [ pulsemixer vim fzf ripgrep ponysay ];
+	services.pipewire = {
+	  enable = true;
+	  pulse.enable = true;
+	};
+	environment.systemPackages = with pkgs; [ vim fzf ripgrep ponysay coreutils fd clang ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
