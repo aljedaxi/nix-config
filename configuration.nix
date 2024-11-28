@@ -42,7 +42,7 @@
 		};
 	};
 	users.defaultUserShell = pkgs.zsh;
-	programs.zsh.enable = true;
+	programs.zsh = { enable = true; };
 	programs.git = {
 		enable = true;
 		config = {
@@ -63,9 +63,7 @@
     enable = true;
     pulse.enable = true;
   };
-  environment.systemPackages = with pkgs; [ pulsemixer vim fzf
-		ripgrep #doom emacs
-	];
+  environment.systemPackages = with pkgs; [ pulsemixer vim fzf ripgrep ponysay ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
