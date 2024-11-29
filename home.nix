@@ -22,7 +22,7 @@ export KEYTIMEOUT=1
 	programs = {
 		script-directory = {
 			enable = true;
-			settings = { SD_CAT = "ponysay"; SD_ROOT = "${config.home.homeDirectory}/.config/sd"; };
+			settings = { SD_CAT = "ponysay"; };
 		};
 		zsh = {
 			initExtra = ''fpath+="${pkgs.script-directory}/share/zsh/site-functions'';
@@ -39,6 +39,10 @@ export KEYTIMEOUT=1
 	xdg = {
 		enable = true;
 		configFile = {
+			"user-dirs.dirs" = {
+				text = ''XDG_DOWNLOAD_DIR="$HOME/tmp"
+XDG_MUSIC_DIR="$HOME/mu"'';
+			};
 			"sx/sxrc" = {
 				text = ''picom --backend xrender &
 dunst &
