@@ -27,6 +27,17 @@
 		};
 	in {
 		nixosConfigurations = {
+			urthr = nixpkgs.lib.nixosSystem {
+				inherit system;
+				modules = [
+					./hardware-configuration.nix
+					./configuration.nix
+					./graphical-conf.nix
+					catppuccin.nixosModules.catppuccin
+					home-manager.nixosModules.home-manager
+					home
+				];
+			};
 			fenrir = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
