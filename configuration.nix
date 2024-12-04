@@ -5,12 +5,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-			./graphical-conf.nix
-    ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -52,15 +46,20 @@
 			user.email = "aljedaxi@pm.me";
 		};
 	};
-
 	nixpkgs.overlays = [
 		(import (builtins.fetchTarball {
 			url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-			sha256 = "sha256:1dnlckw7jrxw7r6sb9accsnsp7wy488fqs5xa7mxkkj7vaa2263c";
+			sha256 = "sha256:1r1jivryhbw43acypd53czz75z59ansb0g22c7cs5z9hfa0qiidp";
 		}))
+		# (import (pkgs.fetchFromGitHub {
+			# user = "nix-community";
+			# repo = "emacs-overlay";
+			# rev = "7a58ace151bf1939308680f37db100b00769c318";
+			# url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+			# sha256 = "sha256:1dnlckw7jrxw7r6sb9accsnsp7wy488fqs5xa7mxkkj7vaa2263c";
+		# }))
 	];
 	services.emacs = {
-		# package = pkgs.emacs-unstable;
 		package = pkgs.emacs-git;
 		startWithGraphical = true;
 		enable = true;

@@ -13,23 +13,29 @@
   outputs = inputs@{ nixpkgs, catppuccin, home-manager,... }:
 	let
 		system = "x86_64-linux";
+		home = {
+			catppuccin.flavor = "mocha";
+			catppuccin.enable = true;
+			home-manager.useGlobalPkgs = true;
+			home-manager.useUserPackages = true;
+			home-manager.users.daxi = {
+				imports = [
+					./home.nix
+					catppuccin.homeManagerModules.catppuccin
+				];
+			};
+		};
 	in {
 		nixosConfigurations = {
 			fenrir = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
+					./hardware-configuration.nix
 					./configuration.nix
+					./graphical-conf.nix
 					catppuccin.nixosModules.catppuccin
 					home-manager.nixosModules.home-manager
-					{
-						catppuccin.flavor = "mocha";
-						catppuccin.enable = true;
-						home-manager.useGlobalPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.users.daxi = {
-							imports = [ ./home.nix catppuccin.homeManagerModules.catppuccin ];
-						};
-					}
+					home
 				];
 			};
 		};
