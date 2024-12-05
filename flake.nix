@@ -2,17 +2,30 @@
   description = "daxiin system config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-		catppuccin.url = "github:catppuccin/nix";
-		home-manager = {
-			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+  	nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  	catppuccin.url = "github:catppuccin/nix";
+  	community-emacs.url = "github:nix-community/emacs-overlay";
+  	home-manager = {
+  		url = "github:nix-community/home-manager";
+  		inputs.nixpkgs.follows = "nixpkgs";
+  	};
   };
 
-  outputs = inputs@{ nixpkgs, catppuccin, home-manager,... }:
+  outputs = inputs@{ nixpkgs, catppuccin, community-emacs, home-manager,... }:
 	let
 		system = "x86_64-linux";
+		pkgs = import nixpkgs {
+			inherit system;
+			overlays = [ community-emacs.overlays.emacs ];
+		};
+		emacs = {
+			services.emacs = {
+				package = pkgs.emacs-git;
+				startWithGraphical = true;
+				enable = true;
+				defaultEditor = true;
+			};
+		};
 		home = {
 			catppuccin.flavor = "mocha";
 			catppuccin.enable = true;
@@ -53,6 +66,7 @@
 					catppuccin.nixosModules.catppuccin
 					home-manager.nixosModules.home-manager
 					home
+					emacs
 				];
 			};
 		};

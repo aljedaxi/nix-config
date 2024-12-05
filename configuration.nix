@@ -9,7 +9,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "fenrir"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -46,25 +45,25 @@
 			user.email = "aljedaxi@pm.me";
 		};
 	};
-	nixpkgs.overlays = [
-		(import (builtins.fetchTarball {
-			url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-			sha256 = "sha256:1r1jivryhbw43acypd53czz75z59ansb0g22c7cs5z9hfa0qiidp";
-		}))
-		# (import (pkgs.fetchFromGitHub {
-			# user = "nix-community";
-			# repo = "emacs-overlay";
-			# rev = "7a58ace151bf1939308680f37db100b00769c318";
-			# url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-			# sha256 = "sha256:1dnlckw7jrxw7r6sb9accsnsp7wy488fqs5xa7mxkkj7vaa2263c";
-		# }))
-	];
-	services.emacs = {
-		package = pkgs.emacs-git;
-		startWithGraphical = true;
-		enable = true;
-		defaultEditor = true;
-	};
+	# nixpkgs.overlays = [
+	# 	(import (builtins.fetchTarball {
+	# 		url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+	# 		sha256 = "sha256:1r1jivryhbw43acypd53czz75z59ansb0g22c7cs5z9hfa0qiidp";
+	# 	}))
+	# 	# (import (pkgs.fetchFromGitHub {
+	# 		# user = "nix-community";
+	# 		# repo = "emacs-overlay";
+	# 		# rev = "7a58ace151bf1939308680f37db100b00769c318";
+	# 		# url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+	# 		# sha256 = "sha256:1dnlckw7jrxw7r6sb9accsnsp7wy488fqs5xa7mxkkj7vaa2263c";
+	# 	# }))
+	# ];
+	# services.emacs = {
+	# 	package = pkgs.emacs-git;
+	# 	startWithGraphical = true;
+	# 	enable = true;
+	# 	defaultEditor = true;
+	# };
 	services.pipewire = {
 	  enable = true;
 	  pulse.enable = true;
