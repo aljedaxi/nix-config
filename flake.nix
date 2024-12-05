@@ -41,7 +41,7 @@
 			fenrir = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
-					./hardware-configuration.nix
+					./fenrir-hardware.nix
 					./configuration.nix
 					./graphical-conf.nix
 					catppuccin.nixosModules.catppuccin
