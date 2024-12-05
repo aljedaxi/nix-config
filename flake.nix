@@ -30,7 +30,10 @@
 			urthr = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
-					./hardware-configuration.nix
+					{
+						networking.hostName = "urthr";
+					}
+					./urthr-hardware.nix
 					./configuration.nix
 					./graphical-conf.nix
 					catppuccin.nixosModules.catppuccin
@@ -41,6 +44,9 @@
 			fenrir = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
+					{
+						networking.hostName = "fenrir";
+					}
 					./fenrir-hardware.nix
 					./configuration.nix
 					./graphical-conf.nix
