@@ -1,0 +1,3 @@
+pushd /etc/nixos
+sudo nixos-rebuild switch
+popd
