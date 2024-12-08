@@ -1,1 +1,1 @@
-/nix/store/z3nnxfxgx6wsv9rd69yik7jvi2as5rsk-home-manager-files/sd/nix/search
+surf "https://search.nixos.org/packages?channel=24.05&from=0&size=50&sort=relevance&type=packages&query=$@"

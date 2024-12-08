@@ -1,1 +1,1 @@
-/nix/store/z3nnxfxgx6wsv9rd69yik7jvi2as5rsk-home-manager-files/sd/doom/install
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs && ~/.config/emacs/bin/doom install

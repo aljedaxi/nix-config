@@ -1,1 +1,1 @@
-/nix/store/z3nnxfxgx6wsv9rd69yik7jvi2as5rsk-home-manager-files/sd/nix/gc
+nix-collect-garbage -d
