@@ -1,6 +1,0 @@
-outfile=$1
-toSay=$2
-say -r 125 -v whisper -o $outfile.aiff $toSay
-ffmpeg -i $outfile.aiff -f mp3 -acodec libmp3lame -ab 192000 -ar 44100 $outfile.mp3
-rm $outfile.aiff
-open $outfile.mp3

@@ -1,1 +1,0 @@
-find prog/zettle | grep -i $1
