@@ -1,0 +1,3 @@
+[submodule "sd"]
+	path = sd
+	url = git@github.com:aljedaxi/sd.git
