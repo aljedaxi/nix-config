@@ -17,8 +17,11 @@
   services.libinput.enable = true;
 
 	nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ]; # needed for logseq >~<
+
+	nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
 		hsetroot
+		discord
 		(st.overrideAttrs (oldAttrs: rec {
 			patches = [
 				./patches/st-alpha-20220206-0.8.5.diff

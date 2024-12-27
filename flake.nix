@@ -21,7 +21,6 @@
 		emacs = {
 			services.emacs = {
 				package = pkgs.emacs-git;
-				startWithGraphical = true;
 				enable = true;
 				defaultEditor = true;
 			};
