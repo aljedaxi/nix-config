@@ -5,7 +5,10 @@
 		homeDirectory = "/home/daxi";
 		stateVersion = "24.05";
 		file = {
-			sd = { source = ./sd; executable = true; };
+			sd = {
+                source = builtins.fetchGit { url = "https://github.com/aljedaxi/sd"; rev = "7145866358f2cc016a545d090002699a99cb57cc"; };
+                executable = true;
+            };
 			".zshrc" = {
 				text = ''
 export EDITOR=vi
@@ -14,8 +17,7 @@ export KEYTIMEOUT=1
 export PATH="$PATH:/Users/daxi/.deno/bin:$HOME/.sh:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-sed/libexec/gnubin:$HOME/.deno/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:/usr/local/anaconda3/bin"
 unsetopt beep
 bindkey -v
-export KEYTIMEOUT=1
-'';
+export KEYTIMEOUT=1'';
 			};
 		};
 	};
