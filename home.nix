@@ -6,7 +6,11 @@
 		stateVersion = "24.05";
 		file = {
 			sd = {
-                source = builtins.fetchGit { url = "https://github.com/aljedaxi/sd"; rev = "7145866358f2cc016a545d090002699a99cb57cc"; };
+                source = builtins.fetchGit {
+                    url = "https://github.com/aljedaxi/sd";
+                    # i don't much like this rev business. but it'll do.
+                    rev = "fdac47274f347fab571e078e6b4980f896cd78f5";
+                };
                 executable = true;
             };
 			".zshrc" = {
