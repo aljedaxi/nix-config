@@ -8,7 +8,7 @@
 			sd = {
                 source = builtins.fetchGit {
                     url = "https://github.com/aljedaxi/sd";
-                    # i don't much like this rev business. but it'll do.
+                    # TODO i don't much like this rev business. but it'll do.
                     rev = "fdac47274f347fab571e078e6b4980f896cd78f5";
                 };
                 executable = true;
@@ -56,7 +56,7 @@ hsetroot -cover /etc/nixos/forest.png
 dwm'';
 				executable = true;
 			};
-			doom = { source = ./doom; };
+			doom = { source = ./doom; }; # TODO pivot to aljedaxi/doom, ala sd above
 		};
 	};
 }
