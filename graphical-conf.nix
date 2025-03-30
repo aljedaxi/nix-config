@@ -16,7 +16,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-	nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ]; # needed for logseq >~<
 
 	nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -35,7 +34,6 @@
 		scrot
 		firefox
 		telegram-desktop
-		logseq
 		neofetch
 		xclip
   ];
