@@ -4,24 +4,19 @@
   inputs = {
   	nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   	catppuccin.url = "github:catppuccin/nix";
-  	community-emacs.url = "github:nix-community/emacs-overlay";
   	home-manager = {
   		url = "github:nix-community/home-manager";
   		inputs.nixpkgs.follows = "nixpkgs";
   	};
   };
 
-  outputs = inputs@{ nixpkgs, catppuccin, community-emacs, home-manager,... }:
+  outputs = inputs@{ nixpkgs, catppuccin, home-manager,... }:
 	let
 		system = "x86_64-linux";
-		pkgs = import nixpkgs {
-			inherit system;
-			overlays = [ community-emacs.overlays.emacs ];
-		};
+		pkgs = import nixpkgs {inherit system;};
 		emacs = {
 			services.emacs = {
-				package = pkgs.emacs-git;
-				startWithGraphical = true;
+				startWithGraphical = false;
 				enable = true;
 				defaultEditor = true;
 			};
