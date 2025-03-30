@@ -24,8 +24,6 @@
     # useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
 	environment.shells = with pkgs; [ zsh ];
 	users = {
