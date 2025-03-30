@@ -9,7 +9,7 @@
                 source = builtins.fetchGit {
                     url = "https://github.com/aljedaxi/sd";
                     # TODO i don't much like this rev business. but it'll do.
-                    rev = "fdac47274f347fab571e078e6b4980f896cd78f5";
+                    rev = "f77c0cd9b7940be0c65e36d6e4345b7afa5fd31b";
                 };
                 executable = true;
             };
@@ -52,11 +52,17 @@ XDG_MUSIC_DIR="$HOME/mu"'';
 			"sx/sxrc" = {
 				text = ''picom --backend xrender &
 dunst &
-hsetroot -cover /etc/nixos/forest.png
+hsetroot -cover $HOME/.config/nixos/forest.png
 dwm'';
 				executable = true;
 			};
-			doom = { source = ./doom; }; # TODO pivot to aljedaxi/doom, ala sd above
+			doom = {
+                source = builtins.fetchGit {
+                    url = "https://github.com/aljedaxi/doom";
+                    # TODO i don't much like this rev business. but it'll do.
+                    rev = "bb3a024c2d0c4bad248bf775eb49e6edcbf2811e";
+                };
+            };
 		};
 	};
 }
